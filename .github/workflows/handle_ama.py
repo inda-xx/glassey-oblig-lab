@@ -21,7 +21,7 @@ def main(key):
             {"role": "system", "content": "You are a teacher that wants to help a student understand their programming assignment."},
             {"role": "assistant", "content": "Given the following student source code, generate a multiple choice question about the code to test understanding of the code. The question should have three answer options and explanations for each answer option.\n\n"},
             {"role": "assistant", "content": source_code},
-            {"role": "assistant", "content": "The response should be formatted as a json object with the following fields: question, answer1, answer2, answer3, explanation1, explanation2, explanation3."},
+            {"role": "assistant", "content": "The response should be in Swedish and formatted as a json object with the following fields: question, answer1, answer2, answer3, explanation1, explanation2, explanation3."},
         ]
     )
     response_json = json.loads(response.choices[0]['message']['content'])
