@@ -44,7 +44,7 @@ def main(key, readme_path, run_path, tests_path):
             {"role": "assistant", "content": "Format the decisions as a list with each exercise, followed by the decision feedback."},
             {"role": "assistant", "content": "Note that the students may not have access to the unit tests at this stage, so try to just refer to expected code behaviour from the exercise."},
             {"role": "assistant", "content": "Finally, provide a grading decision as Looks good to me, or, Needs more work, with an appropriate emojii, and remind them that this is just a soft grading judgement and their TAs decision is the final say."},
-            {"role": "assistant", "content": "The response should be formatted in markdown format"},
+            {"role": "assistant", "content": "The response should be written in Swedish and formatted in markdown format"},
         ]
     )
     fix_apostrophe = response.choices[0]['message']['content'].replace("\'","'")
