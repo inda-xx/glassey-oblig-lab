@@ -3,10 +3,10 @@ import sys
 import openai
 import json
 
-def main(key, readme_path, compile_path, tests_path):
+def main(key, readme_path, run_path, tests_path):
     openai.api_key = key
     
-    # Concatenate all java files found in repo
+    # Concatenate all Python files found in repo's src dir
     all_source_code = ""
     for source_file in sys.stdin:
         source_file = source_file.strip("./")
@@ -17,8 +17,8 @@ def main(key, readme_path, compile_path, tests_path):
     with open(readme_path, 'r') as file:
         readme = file.read()
     
-    with open(compile_path, 'r') as file:
-        compile_output = file.read()
+    with open(run_path, 'r') as file:
+        run_output = file.read()
     
     with open(tests_path, 'r') as file:
         tests_output = file.read()
@@ -33,13 +33,13 @@ def main(key, readme_path, compile_path, tests_path):
             {"role": "assistant", "content": readme},
             {"role": "assistant", "content": "Here is all of the source code they have submitted so far in their task:"},
             {"role": "assistant", "content": all_source_code},
-            {"role": "assistant", "content": "Here are the results of running the Java Compiler on their source code:"},
-            {"role": "assistant", "content": compile_output},
-            {"role": "assistant", "content": "If there are a compilation problems here then let the student know that the code is not compiling."},
+            {"role": "assistant", "content": "Here are the results of running the Python Interpreter on their source code:"},
+            {"role": "assistant", "content": run_output},
+            {"role": "assistant", "content": "If there are a run time problems here then let the student know that the code is not working as expected."},
             {"role": "assistant", "content": "Here are the results of running the unit tests:"},
             {"role": "assistant", "content": tests_output},
             {"role": "assistant", "content": "If there are testing problems here then let the student know that the code is not working correctly."},
-            {"role": "assistant", "content": "Together, the compiler output and unit tests give us the best objective measure of the code."},
+            {"role": "assistant", "content": "Together, the python interpreter output and unit tests give us the best objective measure of the code."},
             {"role": "assistant", "content": "Provide a decision for each exercise if they have managed to satisfy it or not, based on their source code, compilation status and unit tests."},
             {"role": "assistant", "content": "Format the decisions as a list with each exercise, followed by the decision feedback."},
             {"role": "assistant", "content": "Note that the students may not have access to the unit tests at this stage, so try to just refer to expected code behaviour from the exercise."},
